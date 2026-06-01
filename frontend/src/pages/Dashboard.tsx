@@ -1,0 +1,216 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BookOpen, FileText, CheckSquare, Clock, 
+  Brain, AlertCircle, Calendar, Sparkles, Award 
+} from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import { Header } from '../components/Header';
+
+type DashboardData = {
+  total_subjects: number;
+  documents_uploaded: number;
+  quizzes_completed: number;
+  study_hours: number;
+  knowledge_score: number;
+  weak_topics_count: number;
+  level: number;
+  xp: number;
+  streak: number;
+  recent_activity: Array<{
+    type: string;
+    title: string;
+    description: string;
+    timestamp: string;
+  }>;
+  recommendations: string[];
+};
+
+export const Dashboard: React.FC = () => {
+  const { token, apiUrl, user } = useApp();
+  const [data, setData] = useState<DashboardData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchOverview = async () => {
+    if (!token) return;
+    try {
+      const response = await fetch(`${apiUrl}/analytics/overview`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (response.ok) {
+        const result = await response.json();
+        setData(result);
+      }
+    } catch (e) {
+      console.error('Failed to load dashboard:', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchOverview();
+  }, [token]);
+
+  if (loading) {
+    return (
+      <div className="flex h-[80vh] items-center justify-center">
+        <div className="h-10 w-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!data) return <p className="text-red-500 p-8">Failed to load dashboard.</p>;
+
+  const cards = [
+    { title: 'Total Subjects', value: data.total_subjects, icon: BookOpen, color: 'text-primary bg-primary/10 border-primary/20' },
+    { title: 'Notes Synced', value: data.documents_uploaded, icon: FileText, color: 'text-secondary bg-secondary/10 border-secondary/20' },
+    { title: 'Quizzes Taken', value: data.quizzes_completed, icon: CheckSquare, color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20' },
+    { title: 'Hours Studied', value: `${data.study_hours}h`, icon: Clock, color: 'text-amber-500 bg-amber-500/10 border-amber-500/20' },
+    { title: 'Knowledge Level', value: `${data.knowledge_score}%`, icon: Brain, color: 'text-accent bg-accent/10 border-accent/20' },
+    { title: 'Weak Topics', value: data.weak_topics_count, icon: AlertCircle, color: 'text-red-500 bg-red-500/10 border-red-500/20' },
+  ];
+
+  return (
+    <div className="p-4 sm:p-6 lg:p-8 w-full">
+      <Header title="My Study Twin Dashboard" />
+
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+        {cards.map((card, idx) => {
+          const Icon = card.icon;
+          return (
+            <div key={idx} className="p-4 rounded-xl glass-panel hover:scale-[1.02] hover:shadow-lg hover:border-primary/30 transition-all flex flex-col justify-between min-h-[110px]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400">
+                  {card.title}
+                </span>
+                <div className={`p-1.5 rounded-lg border ${card.color}`}>
+                  <Icon className="h-4 w-4" />
+                </div>
+              </div>
+              <div className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-tight">
+                {card.value}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Widgets row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Clone Status Badge */}
+        <div className="lg:col-span-1 glass-panel p-6 rounded-2xl flex flex-col justify-between h-full relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10 text-primary pointer-events-none">
+            <Brain className="h-44 w-44" />
+          </div>
+          
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="h-5 w-5 text-primary" />
+              <h3 className="font-bold text-slate-800 dark:text-white text-base">AI Brain Clone Status</h3>
+            </div>
+            
+            <div className="p-4 rounded-xl bg-slate-100/60 dark:bg-slate-950/40 border border-border/80 mb-6 text-center shadow-inner">
+              <div className="text-slate-500 dark:text-slate-400 text-xs mb-1 font-medium">Clone Memory Depth</div>
+              <div className="text-4xl font-extrabold text-slate-800 dark:text-white tracking-tight">
+                {Math.round(data.documents_uploaded * 7.5 + data.quizzes_completed * 4.2)}%
+              </div>
+              <p className="text-[10px] text-primary font-semibold tracking-wider mt-1.5 uppercase">
+                {data.documents_uploaded === 0 ? 'Syncing files needed' : 'Synchronized & Calibrating'}
+              </p>
+            </div>
+
+            <div className="space-y-3.5">
+              <div className="flex justify-between text-xs">
+                <span className="text-slate-500 dark:text-slate-400">User Level:</span>
+                <span className="text-slate-800 dark:text-white font-bold">Level {data.level}</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-slate-500 dark:text-slate-400">Streak Status:</span>
+                <span className="text-warning font-semibold flex items-center gap-1">
+                  <Award className="h-3.5 w-3.5 fill-warning" />
+                  {data.streak} Days Streak
+                </span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-slate-500 dark:text-slate-400">Clone Learning Style:</span>
+                <span className="text-secondary font-semibold capitalize">{user?.preferred_learning_style || 'General'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Recommendations */}
+        <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between h-full">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Brain className="h-5 w-5 text-accent" />
+              <h3 className="font-bold text-slate-800 dark:text-white text-base">Study Twin Recommendations</h3>
+            </div>
+            
+            <div className="space-y-3.5">
+              {data.recommendations.map((rec, idx) => (
+                <div key={idx} className="flex gap-3 p-3.5 rounded-xl bg-slate-100/60 dark:bg-slate-900/40 border border-border/60 text-xs text-slate-700 dark:text-slate-350 leading-relaxed shadow-sm">
+                  <Sparkles className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                  <span>{rec}</span>
+                </div>
+              ))}
+              
+              {data.recommendations.length === 0 && (
+                <p className="text-xs text-slate-500 py-6 text-center">
+                  Your twin has no immediate tips. Try taking quizzes to test your knowledge!
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="glass-panel p-6 rounded-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <Calendar className="h-5 w-5 text-secondary" />
+            <h3 className="font-bold text-slate-800 dark:text-white text-base">Recent Brain Syncs</h3>
+          </div>
+
+          <div className="space-y-4 max-h-[300px] overflow-y-auto pr-1">
+            {data.recent_activity.map((act, idx) => (
+              <div key={idx} className="flex items-start gap-3 pb-3 border-b border-border/50 last:border-0">
+                <div className={`p-2 rounded-lg shrink-0 ${
+                  act.type === 'upload' ? 'bg-secondary/10 text-secondary' :
+                  act.type === 'quiz' ? 'bg-emerald-500/10 text-emerald-500' :
+                  'bg-primary/10 text-primary'
+                }`}>
+                  {act.type === 'upload' ? <FileText className="h-3.5 w-3.5" /> :
+                   act.type === 'quiz' ? <CheckSquare className="h-3.5 w-3.5" /> :
+                   <Clock className="h-3.5 w-3.5" />}
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-700 dark:text-slate-200">{act.title}</h4>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed mt-0.5">{act.description}</p>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 block mt-1">
+                    {new Date(act.timestamp).toLocaleDateString(undefined, { 
+                      month: 'short', 
+                      day: 'numeric', 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
+                  </span>
+                </div>
+              </div>
+            ))}
+
+            {data.recent_activity.length === 0 && (
+              <p className="text-xs text-slate-500 py-12 text-center">
+                No recent study activity logged. Get started by uploading a file!
+              </p>
+            )}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
