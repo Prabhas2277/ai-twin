@@ -49,7 +49,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
 
-  const apiUrl = 'http://127.0.0.1:8000/api'; // matches FastAPI port
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'; // matches FastAPI port
 
   useEffect(() => {
     // Restore session

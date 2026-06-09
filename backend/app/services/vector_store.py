@@ -4,7 +4,7 @@ import google.generativeai as genai
 from ..core.config import settings
 
 # Initialize ChromaDB persistent client
-chroma_client = chromadb.PersistentClient(path="./db/chroma")
+chroma_client = chromadb.PersistentClient(path=settings.CHROMA_DB_DIR)
 collection = chroma_client.get_or_create_collection(name="student_materials")
 
 def get_embedding(text: str, is_query: bool = False) -> List[float]:

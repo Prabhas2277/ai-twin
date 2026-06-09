@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./db.sqlite3")
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./uploads")
+    CHROMA_DB_DIR: str = os.getenv("CHROMA_DB_DIR", "./db/chroma")
     
     class Config:
         env_file = ".env"
@@ -17,4 +18,4 @@ settings = Settings()
 
 # Ensure directories exist
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
-os.makedirs("./db/chroma", exist_ok=True)
+os.makedirs(settings.CHROMA_DB_DIR, exist_ok=True)
