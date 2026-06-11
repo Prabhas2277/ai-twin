@@ -7,7 +7,7 @@ interface LandingProps {
 }
 
 export const Landing: React.FC<LandingProps> = ({ onStart }) => {
-  const { theme, setTheme } = useApp();
+
 
   return (
     <div className="relative min-h-screen grid-bg overflow-hidden flex flex-col justify-between bg-background text-foreground transition-colors duration-300">
@@ -27,14 +27,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
         </div>
         
         <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2.5 rounded-xl bg-card border border-border/80 text-slate-600 dark:text-slate-400 hover:text-primary transition"
-            aria-label="Toggle light/dark theme"
-            style={{ minWidth: '44px', minHeight: '44px' }}
-          >
-            {theme === 'dark' ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5" />}
-          </button>
+
           
           <button 
             onClick={() => onStart('login')}

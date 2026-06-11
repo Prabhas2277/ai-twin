@@ -16,7 +16,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ title }) => {
-  const { setMobileSidebarOpen, theme, setTheme } = useApp();
+  const { setMobileSidebarOpen } = useApp();
 
   return (
     <div className="w-full flex items-center justify-between pb-4 mb-6 border-b border-border/40 gap-4 mt-2">
@@ -42,16 +42,6 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
       </div>
 
       <div className="flex items-center gap-2.5">
-        {/* Theme Switcher Quick Toggle (Header) */}
-        <button 
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="p-2.5 rounded-xl bg-card border border-border/80 text-slate-600 dark:text-slate-400 hover:text-primary transition"
-          aria-label="Toggle light/dark theme"
-          style={{ minWidth: '44px', minHeight: '44px' }}
-        >
-          {theme === 'dark' ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5" />}
-        </button>
-
         {/* Notification Bell Dropdown */}
         <NotificationBell />
       </div>

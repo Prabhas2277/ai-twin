@@ -45,7 +45,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [user, setUser] = useState<UserProfile | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [theme, setThemeState] = useState<'dark' | 'light'>('dark');
+  const theme = 'dark';
   const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
 
@@ -55,19 +55,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     // Restore session
     const storedToken = localStorage.getItem('twin_token');
     const storedUser = localStorage.getItem('twin_user');
-    const storedTheme = localStorage.getItem('twin_theme') as 'dark' | 'light' | null;
     const storedCollapsed = localStorage.getItem('twin_sidebar_collapsed');
 
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
     }
-    if (storedTheme) {
-      setThemeState(storedTheme);
-      document.documentElement.className = storedTheme;
-    } else {
-      document.documentElement.className = 'dark';
-    }
+    
+    document.documentElement.className = 'dark';
+    
     if (storedCollapsed) {
       setSidebarCollapsed(storedCollapsed === 'true');
     }
@@ -89,9 +85,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const setTheme = (newTheme: 'dark' | 'light') => {
-    setThemeState(newTheme);
-    localStorage.setItem('twin_theme', newTheme);
-    document.documentElement.className = newTheme;
+    // Always force dark mode
+    document.documentElement.className = 'dark';
   };
 
   const toggleSidebarCollapsed = (val: boolean) => {

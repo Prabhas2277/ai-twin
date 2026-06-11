@@ -5,8 +5,8 @@
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
 
-    --card: 224 71% 7% / 0.55;
-    --border: 217 32% 17% / 0.6;
+    --card: 224 71% 6% / 0.45; /* Deeper translucency for frosted glass */
+    --border: 217 32% 17% / 0.45; /* Cleaner, softer borders */
 
     --primary: 263.4 70% 50.4%; /* Purple */
     --secondary: 191.6 91.4% 36.5%; /* Teal */
@@ -17,22 +17,6 @@
     --error: 0 84.2% 60.2%;
 
     --radius: 0.75rem;
-  }
-
-  .light {
-    --background: 220 50% 98.5%; /* Soft indigo-tinted off-white background */
-    --foreground: 224 45% 12%; /* Professional deep navy slate text */
-
-    --card: 0 0% 100% / 0.88; /* Highly legible glass card */
-    --border: 220 30% 90% / 0.8; /* Subtle border for clean layout */
-
-    --primary: 256 85% 55%; /* Vibrant royal indigo */
-    --secondary: 185 85% 35%; /* Premium deep teal */
-    --accent: 320 85% 45%; /* Aesthetic rose pink */
-    
-    --success: 142.1 76% 28%;
-    --warning: 37.9 90% 40%;
-    --error: 0 85% 52%;
   }
 }
 
@@ -45,8 +29,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: hsl(var(--background));
   background-image: 
-    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.04) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, hsl(var(--secondary) / 0.04) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.08) 0px, transparent 50%), /* Enhanced glow */
+    radial-gradient(at 100% 0%, hsl(var(--secondary) / 0.08) 0px, transparent 50%);
   color: hsl(var(--foreground));
   overflow-x: hidden;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -65,10 +49,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background: hsla(217, 32%, 17%, 0.6);
   border-radius: 9999px;
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: hsla(214, 32%, 80%, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -91,21 +71,13 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
 
-.light .glass-panel {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-}
-
 .glass-panel-glow {
   background: hsl(var(--card));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 0 25px -5px hsl(var(--primary) / 0.15);
+  box-shadow: 0 0 35px -5px hsl(var(--primary) / 0.25), 0 0 15px -5px hsl(var(--secondary) / 0.15); /* More premium glows */
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.light .glass-panel-glow {
-  box-shadow: 0 15px 35px -10px hsl(var(--primary) / 0.08), 0 5px 15px -5px hsl(var(--secondary) / 0.04);
 }
 
 .glass-input {
@@ -113,11 +85,6 @@ body {
   border: 1px solid hsl(var(--border));
   color: hsl(var(--foreground));
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.light .glass-input {
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .glass-input:focus {
@@ -134,22 +101,12 @@ body {
   background-size: 40px 40px;
 }
 
-.light .grid-bg {
-  background-image: 
-    linear-gradient(to right, hsla(214, 32%, 80%, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, hsla(214, 32%, 80%, 0.12) 1px, transparent 1px);
-}
-
 .glow-circle {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.12;
   pointer-events: none;
-}
-
-.light .glow-circle {
-  opacity: 0.05;
 }
 
 /* Typing indicator animation */

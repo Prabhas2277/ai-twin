@@ -13,7 +13,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) => {
   const { 
-    user, logout, theme, setTheme, 
+    user, logout, 
     isSidebarCollapsed, setSidebarCollapsed,
     isMobileSidebarOpen, setMobileSidebarOpen 
   } = useApp();
@@ -195,17 +195,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
 
       {/* Footer controls & Logout */}
       <div className="p-3 border-t border-border/60 space-y-2">
-        {(!isSidebarCollapsed || isMobileSidebarOpen) ? (
-          <div className="flex items-center justify-between px-2 text-[10px] text-slate-500 dark:text-slate-400">
-            <span>Active Theme:</span>
-            <button 
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 border border-border/80 hover:bg-slate-350 dark:hover:bg-slate-700 text-slate-700 dark:text-white capitalize font-semibold transition"
-            >
-              {theme}
-            </button>
-          </div>
-        ) : null}
+
 
         <button
           onClick={logout}
