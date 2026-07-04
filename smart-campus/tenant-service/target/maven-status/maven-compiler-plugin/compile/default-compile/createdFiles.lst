@@ -1,0 +1,5 @@
+com\campus\tenant\TenantServiceApplication.class
+com\campus\tenant\controller\TenantController.class
+com\campus\tenant\model\Tenant.class
+com\campus\tenant\repository\TenantRepository.class
+com\campus\tenant\config\SecurityConfig.class

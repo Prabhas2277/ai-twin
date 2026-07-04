@@ -1,0 +1,7 @@
+com\campus\hostel\controller\HostelController.class
+com\campus\hostel\model\Room.class
+com\campus\hostel\config\SecurityConfig.class
+com\campus\hostel\HostelServiceApplication.class
+com\campus\hostel\repository\AllocationRepository.class
+com\campus\hostel\repository\RoomRepository.class
+com\campus\hostel\model\Allocation.class

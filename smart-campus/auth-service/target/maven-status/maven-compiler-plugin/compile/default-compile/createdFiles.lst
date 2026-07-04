@@ -1,0 +1,8 @@
+com\campus\auth\config\SecurityConfig.class
+com\campus\auth\model\User.class
+com\campus\auth\dto\AuthResponse.class
+com\campus\auth\repository\UserRepository.class
+com\campus\auth\dto\LoginRequest.class
+com\campus\auth\AuthServiceApplication.class
+com\campus\auth\dto\RegisterRequest.class
+com\campus\auth\controller\AuthController.class

@@ -1,0 +1,5 @@
+com\campus\attendance\repository\AttendanceRepository.class
+com\campus\attendance\controller\AttendanceController.class
+com\campus\attendance\model\AttendanceRecord.class
+com\campus\attendance\AttendanceServiceApplication.class
+com\campus\attendance\config\SecurityConfig.class

@@ -1,0 +1,8 @@
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\AuthServiceApplication.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\config\SecurityConfig.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\controller\AuthController.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\dto\AuthResponse.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\dto\LoginRequest.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\dto\RegisterRequest.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\model\User.java
+C:\Users\prabhas\OneDrive\Desktop\ai twins\smart-campus\auth-service\src\main\java\com\campus\auth\repository\UserRepository.java

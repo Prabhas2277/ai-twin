@@ -1,0 +1,7 @@
+com\campus\fee\FeeServiceApplication.class
+com\campus\fee\model\Payment.class
+com\campus\fee\repository\FeeStructureRepository.class
+com\campus\fee\config\SecurityConfig.class
+com\campus\fee\controller\FeeController.class
+com\campus\fee\repository\PaymentRepository.class
+com\campus\fee\model\FeeStructure.class

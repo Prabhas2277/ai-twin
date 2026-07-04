@@ -1,0 +1,7 @@
+com\campus\library\model\BookIssue.class
+com\campus\library\model\Book.class
+com\campus\library\repository\BookRepository.class
+com\campus\library\LibraryServiceApplication.class
+com\campus\library\repository\BookIssueRepository.class
+com\campus\library\controller\LibraryController.class
+com\campus\library\config\SecurityConfig.class
