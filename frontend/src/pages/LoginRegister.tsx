@@ -105,7 +105,7 @@ export const LoginRegister: React.FC<LoginRegisterProps> = ({ initialMode, onBac
       <div className="w-full max-w-md glass-panel p-8 rounded-2xl border shadow-2xl relative z-10">
         {/* Branding header */}
         <div className="text-center mb-8">
-          <div className="inline-flex h-12 w-12 rounded-xl bg-gradient-to-tr from-primary to-accent items-center justify-center text-white mb-4 shadow-lg shadow-primary/20">
+          <div className="inline-flex h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 items-center justify-center text-white mb-4 shadow-lg shadow-primary/20">
             <Sparkles className="h-6 w-6" />
           </div>
           <h2 className="text-2xl font-bold text-slate-800 dark:text-white">
@@ -204,7 +204,7 @@ export const LoginRegister: React.FC<LoginRegisterProps> = ({ initialMode, onBac
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/95 hover:to-accent/95 text-sm font-bold text-white transition-all shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+            className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-sm font-bold text-background transition-all shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
             style={{ minHeight: '44px' }}
           >
             {isLoading ? (

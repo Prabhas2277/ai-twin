@@ -2,7 +2,7 @@ import React from 'react';
 import { 
   LayoutDashboard, BookOpen, MessageSquare, 
   CheckSquare, Calendar, BarChart2, Settings, 
-  LogOut, ShieldAlert, Award, Zap, ChevronLeft, ChevronRight, X 
+  LogOut, ShieldAlert, ChevronLeft, ChevronRight, X 
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -51,17 +51,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
       <div>
         <div className="p-4 flex items-center justify-between relative">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shadow-lg shadow-primary/20">
-              <Zap className="h-6 w-6" />
+            {/* Twin mark: two parallel strokes standing for "you + your twin" */}
+            <div className="h-10 w-10 shrink-0 rounded-xl bg-card border border-border flex items-center justify-center gap-[3px]">
+              <span className="h-5 w-[3px] rounded-full bg-primary"></span>
+              <span className="h-5 w-[3px] rounded-full bg-primary/40"></span>
             </div>
-            
+
             {(!isSidebarCollapsed || isMobileSidebarOpen) && (
               <div className="transition-all duration-300">
-                <h1 className="font-bold text-base tracking-tight text-slate-800 dark:text-white">
+                <h1 className="font-display font-semibold text-base text-white leading-tight">
                   AI Study Twin
                 </h1>
-                <span className="text-[10px] text-primary font-medium tracking-widest uppercase">
-                  Digital Clone
+                <span className="text-[10px] text-slate-500 font-medium tracking-wide">
+                  Learns as you do
                 </span>
               </div>
             )}
@@ -93,38 +95,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
         {/* User XP Gamification Badge */}
         {(!isSidebarCollapsed || isMobileSidebarOpen) ? (
           <div className="px-4 mb-4 transition-all duration-300">
-            <div className="p-3.5 rounded-xl bg-slate-100/60 dark:bg-slate-950/30 border border-border/60 relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-2 text-warning/15 dark:text-warning/5 pointer-events-none">
-                <Award className="h-14 w-14" />
-              </div>
-              
-              <div className="flex items-center justify-between mb-1.5">
-                <div>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">Student Level</span>
-                  <span className="text-base font-extrabold text-slate-800 dark:text-white">Lvl {user.level}</span>
-                </div>
-                <div className="flex items-center gap-1 bg-warning/10 text-warning text-[10px] px-2 py-0.5 rounded-full font-semibold border border-warning/20">
-                  <Zap className="h-2.5 w-2.5 fill-warning" />
-                  <span>{user.streak_days}d Streak</span>
-                </div>
+            <div className="p-3.5 rounded-xl bg-card border border-border">
+              <div className="flex items-baseline justify-between mb-2">
+                <span className="font-mono-data text-lg font-semibold text-white">Lvl {user.level}</span>
+                <span className="text-[11px] text-slate-500">{user.streak_days}d streak</span>
               </div>
 
-              <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5 mb-1.5 overflow-hidden">
-                <div 
-                  className="bg-gradient-to-r from-primary to-accent h-1.5 rounded-full transition-all duration-500" 
+              <div className="w-full bg-slate-800 rounded-full h-1 mb-1.5 overflow-hidden">
+                <div
+                  className="bg-primary h-1 rounded-full transition-all duration-500"
                   style={{ width: `${progressPercent}%` }}
                 ></div>
               </div>
-              
-              <div className="flex justify-between text-[9px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>{user.xp} Total XP</span>
-                <span>{currentXpInLevel}/100 XP</span>
+
+              <div className="text-[10px] text-slate-500 font-mono-data">
+                {currentXpInLevel}/100 XP
               </div>
             </div>
           </div>
         ) : (
           <div className="flex justify-center mb-4 mt-2">
-            <div className="h-8 w-8 rounded-full bg-warning/10 border border-warning/20 flex items-center justify-center text-warning" title={`Level ${user.level} • ${user.xp} XP`}>
+            <div className="h-8 w-8 rounded-full bg-card border border-border flex items-center justify-center text-primary font-mono-data" title={`Level ${user.level} • ${user.xp} XP`}>
               <span className="text-xs font-bold">{user.level}</span>
             </div>
           </div>
@@ -145,7 +136,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
                   isSidebarCollapsed && !isMobileSidebarOpen ? 'justify-center py-3 px-0' : 'gap-3 px-3.5 py-2.5'
                 } ${
                   isActive 
-                    ? 'bg-gradient-to-r from-primary/15 to-primary/5 text-primary border-l-2 border-primary' 
+                    ? 'bg-primary/10 text-primary border-l-2 border-primary' 
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900/30'
                 }`}
                 title={isSidebarCollapsed ? item.name : undefined}
@@ -164,7 +155,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
                 isSidebarCollapsed && !isMobileSidebarOpen ? 'justify-center py-3 px-0' : 'gap-3 px-3.5 py-2.5'
               } ${
                 activePage === 'admin' 
-                  ? 'bg-gradient-to-r from-red-500/15 to-red-500/5 text-red-500 border-l-2 border-red-500' 
+                  ? 'bg-red-500/10 text-red-500 border-l-2 border-red-500' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-850 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900/30'
               }`}
               title={isSidebarCollapsed ? "Admin Portal" : undefined}
@@ -181,7 +172,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
               isSidebarCollapsed && !isMobileSidebarOpen ? 'justify-center py-3 px-0' : 'gap-3 px-3.5 py-2.5'
             } ${
               activePage === 'settings' 
-                ? 'bg-gradient-to-r from-primary/15 to-primary/5 text-primary border-l-2 border-primary' 
+                ? 'bg-primary/10 text-primary border-l-2 border-primary' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900/30'
             }`}
             title={isSidebarCollapsed ? "Settings" : undefined}

@@ -1,39 +1,46 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    /* Flat charcoal base — no frosted glass */
+    --background: 222 18% 8%;
+    --foreground: 210 20% 92%;
 
-    --card: 224 71% 6% / 0.45; /* Deeper translucency for frosted glass */
-    --border: 217 32% 17% / 0.45; /* Cleaner, softer borders */
+    --card: 222 16% 11%;       /* solid surface, no opacity trick */
+    --border: 220 14% 20%;
 
-    --primary: 263.4 70% 50.4%; /* Purple */
-    --secondary: 191.6 91.4% 36.5%; /* Teal */
-    --accent: 326.3 83.6% 40.2%; /* Pink/Magenta */
-    
-    --success: 142.1 76.2% 36.3%;
-    --warning: 37.9 90.2% 51.1%;
-    --error: 0 84.2% 60.2%;
+    /* Single "signal" accent family — amber does the work instead of 3 clashing hues */
+    --primary: 38 85% 58%;       /* signal amber */
+    --secondary: 32 30% 48%;     /* muted bronze — close relative of primary */
+    --accent: 217 20% 62%;       /* cool grey-blue — used sparingly for contrast, not competition */
 
-    --radius: 0.75rem;
+    --success: 142 40% 45%;
+    --warning: 38 85% 58%;
+    --error: 4 60% 55%;
+
+    --radius: 0.625rem;
   }
 }
 
 body {
   margin: 0;
-  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: hsl(var(--background));
-  background-image: 
-    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.08) 0px, transparent 50%), /* Enhanced glow */
-    radial-gradient(at 100% 0%, hsl(var(--secondary) / 0.08) 0px, transparent 50%);
   color: hsl(var(--foreground));
   overflow-x: hidden;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.font-mono-data {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 /* Custom Scrollbar for sleek UI */
@@ -59,57 +66,46 @@ body {
 *:focus-visible {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
-}
+  }
 
-/* Glassmorphism custom classes */
-.glass-panel {
+  /* Flat surface classes — replaces glassmorphism. Names kept for compatibility with existing components. */
+  .glass-panel {
   background: hsl(var(--card));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid hsl(var(--border));
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-}
+  transition: border-color 0.2s ease;
+  }
 
-.glass-panel-glow {
+  .glass-panel-glow {
   background: hsl(var(--card));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 0 35px -5px hsl(var(--primary) / 0.25), 0 0 15px -5px hsl(var(--secondary) / 0.15); /* More premium glows */
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
+  border: 1px solid hsl(var(--primary) / 0.35);
+  transition: border-color 0.2s ease;
+  }
 
-.glass-input {
-  background: rgba(13, 16, 26, 0.25);
+  .glass-input {
+  background: hsl(var(--background));
   border: 1px solid hsl(var(--border));
   color: hsl(var(--foreground));
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
 
-.glass-input:focus {
+  .glass-input:focus {
   outline: none;
   border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
-}
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.15);
+  }
 
-/* Animated grid background */
-.grid-bg {
-  background-image: 
-    linear-gradient(to right, hsla(217, 32%, 17%, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, hsla(217, 32%, 17%, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+  /* Quiet dot grid — replaces the line grid + glow blobs */
+  .grid-bg {
+  background-image: radial-gradient(hsla(210, 20%, 92%, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  }
 
-.glow-circle {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.12;
-  pointer-events: none;
-}
+  /* Glow blobs disabled by default in the calm theme (kept as a no-op class so JSX doesn't need edits) */
+  .glow-circle {
+  display: none;
+  }
 
-/* Typing indicator animation */
+  /* Typing indicator animation */
 @keyframes typing-bounce {
   0%, 100% {
     transform: translateY(0);

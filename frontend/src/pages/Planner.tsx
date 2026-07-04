@@ -299,7 +299,7 @@ export const Planner: React.FC = () => {
               <button
                 type="submit"
                 disabled={generating}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/95 text-xs font-bold text-white flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
+                className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
                 style={{ minHeight: '44px' }}
               >
                 {generating ? (

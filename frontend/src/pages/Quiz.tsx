@@ -285,7 +285,7 @@ export const Quiz: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={generating}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/95 text-xs font-bold text-white flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+                  className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
                   style={{ minHeight: '44px' }}
                 >
                   {generating ? (
@@ -450,7 +450,7 @@ export const Quiz: React.FC = () => {
               </div>
 
               {quizResults.leveled_up && (
-                <div className="p-4 rounded-xl bg-warning/10 border border-warning/20 text-warning text-xs font-bold animate-pulse max-w-sm">
+                <div className="p-4 rounded-xl bg-warning/10 border border-warning/20 text-warning text-xs font-bold max-w-sm">
                   🎉 Level Up! You reached Level {quizResults.new_level}!
                 </div>
               )}
@@ -563,7 +563,7 @@ export const Quiz: React.FC = () => {
                 <button
                   onClick={handleSubmitQuiz}
                   disabled={submittingQuiz}
-                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/95 text-xs font-bold text-white shadow-lg shadow-primary/10 disabled:opacity-50 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background shadow-lg shadow-primary/10 disabled:opacity-50 cursor-pointer"
                   style={{ minHeight: '44px' }}
                 >
                   {submittingQuiz ? 'Evaluating Answers...' : 'Submit Answers'}

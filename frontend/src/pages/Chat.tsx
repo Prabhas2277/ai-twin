@@ -343,7 +343,7 @@ export const Chat: React.FC = () => {
                 setShowMobileFilters(false);
               }}
               disabled={generatingNotes}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-xs font-bold text-white hover:from-primary/95 flex items-center justify-center gap-1.5 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 cursor-pointer"
               style={{ minHeight: '44px' }}
             >
               {generatingNotes ? (
@@ -370,7 +370,7 @@ export const Chat: React.FC = () => {
               <div>
                 <div className="flex justify-between items-center pb-3 border-b border-border/80 mb-4">
                   <h3 className="font-bold text-slate-800 dark:text-white text-lg flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-accent animate-pulse" />
+                    <Sparkles className="h-5 w-5 text-primary" />
                     <span>Synthesized Study Kit</span>
                   </h3>
                   <button 
@@ -393,7 +393,7 @@ export const Chat: React.FC = () => {
           <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-5">
             {messages.length === 0 && (
               <div className="h-full flex flex-col items-center justify-center text-center p-6 select-none">
-                <Brain className="h-16 w-16 text-slate-400 dark:text-slate-600 mb-4 animate-pulse" />
+                <Brain className="h-16 w-16 text-slate-600 mb-4" />
                 <h3 className="font-extrabold text-slate-800 dark:text-white text-lg">AI Study Twin Session</h3>
                 <p className="text-slate-500 dark:text-slate-500 text-xs mt-1.5 max-w-sm leading-relaxed">
                   I represent your cognitive double. Ask questions about your uploaded documents, ask for conceptual explanations, or generate summaries.
@@ -407,7 +407,7 @@ export const Chat: React.FC = () => {
                 className={`flex gap-3 sm:gap-4 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.role !== 'user' && (
-                  <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shrink-0 shadow-md">
+                  <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-white shrink-0 shadow-md">
                     <Brain className="h-5 w-5" />
                   </div>
                 )}
@@ -451,7 +451,7 @@ export const Chat: React.FC = () => {
 
             {loading && (
               <div className="flex gap-4 justify-start">
-                <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shrink-0">
+                <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-white shrink-0">
                   <Brain className="h-5 w-5" />
                 </div>
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-border text-slate-500 rounded-tl-none flex gap-1 items-center h-10">
@@ -484,7 +484,7 @@ export const Chat: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="absolute right-2 top-2 p-2.5 rounded-lg bg-gradient-to-r from-primary to-accent text-white hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none transition cursor-pointer"
+                className="absolute right-2 top-2 p-2.5 rounded-lg bg-primary hover:bg-primary/90 text-background hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none transition cursor-pointer"
                 style={{ minWidth: '44px', minHeight: '44px' }}
                 aria-label="Send message"
               >

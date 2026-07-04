@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Check, Menu, Sun, Moon } from 'lucide-react';
+import { Bell, Check, Menu } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export interface NotificationItem {
@@ -32,12 +32,9 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         </button>
 
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white capitalize tracking-tight">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold text-white capitalize">
             {title}
           </h2>
-          <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            AI Study Twin • Synchronized & Learning
-          </p>
         </div>
       </div>
 
@@ -103,7 +100,7 @@ const NotificationBell: React.FC = () => {
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-[10px] font-bold text-white flex items-center justify-center animate-pulse">
+          <span className="absolute -top-1 -right-1 h-4.5 w-4.5 rounded-full bg-primary text-[10px] font-bold text-background flex items-center justify-center">
             {unreadCount}
           </span>
         )}

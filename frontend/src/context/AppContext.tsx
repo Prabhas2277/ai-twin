@@ -84,7 +84,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.removeItem('twin_user');
   };
 
-  const setTheme = (newTheme: 'dark' | 'light') => {
+  const setTheme = (_newTheme: 'dark' | 'light') => {
     // Always force dark mode
     document.documentElement.className = 'dark';
   };

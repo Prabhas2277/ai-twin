@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, FileText, CheckSquare, Clock, 
-  Brain, AlertCircle, Calendar, Sparkles, Award 
+  Brain, AlertCircle, Calendar, Sparkles 
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
@@ -97,47 +97,39 @@ export const Dashboard: React.FC = () => {
           );
         })}
       </div>
-
       {/* Widgets row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Clone Status Badge */}
-        <div className="lg:col-span-1 glass-panel p-6 rounded-2xl flex flex-col justify-between h-full relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10 text-primary pointer-events-none">
-            <Brain className="h-44 w-44" />
-          </div>
-          
+        {/* Clone Status */}
+        <div className="lg:col-span-1 glass-panel p-6 rounded-2xl flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Sparkles className="h-5 w-5 text-primary" />
-              <h3 className="font-bold text-slate-800 dark:text-white text-base">AI Brain Clone Status</h3>
+              <Brain className="h-4 w-4 text-primary" />
+              <h3 className="font-display font-semibold text-white text-base">Twin Status</h3>
             </div>
-            
-            <div className="p-4 rounded-xl bg-slate-100/60 dark:bg-slate-950/40 border border-border/80 mb-6 text-center shadow-inner">
-              <div className="text-slate-500 dark:text-slate-400 text-xs mb-1 font-medium">Clone Memory Depth</div>
-              <div className="text-4xl font-extrabold text-slate-800 dark:text-white tracking-tight">
+
+            <div className="mb-6 pb-6 border-b border-border">
+              <div className="text-slate-500 text-xs mb-1">Memory depth</div>
+              <div className="font-mono-data text-4xl font-semibold text-white">
                 {Math.round(data.documents_uploaded * 7.5 + data.quizzes_completed * 4.2)}%
               </div>
-              <p className="text-[10px] text-primary font-semibold tracking-wider mt-1.5 uppercase">
-                {data.documents_uploaded === 0 ? 'Syncing files needed' : 'Synchronized & Calibrating'}
+              <p className="text-[11px] text-primary mt-1">
+                {data.documents_uploaded === 0 ? 'Needs files to sync' : 'Synced and calibrating'}
               </p>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-3">
               <div className="flex justify-between text-xs">
-                <span className="text-slate-500 dark:text-slate-400">User Level:</span>
-                <span className="text-slate-800 dark:text-white font-bold">Level {data.level}</span>
+                <span className="text-slate-500">Level</span>
+                <span className="text-white font-mono-data">{data.level}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-slate-500 dark:text-slate-400">Streak Status:</span>
-                <span className="text-warning font-semibold flex items-center gap-1">
-                  <Award className="h-3.5 w-3.5 fill-warning" />
-                  {data.streak} Days Streak
-                </span>
+                <span className="text-slate-500">Streak</span>
+                <span className="text-white font-mono-data">{data.streak}d</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-slate-500 dark:text-slate-400">Clone Learning Style:</span>
-                <span className="text-secondary font-semibold capitalize">{user?.preferred_learning_style || 'General'}</span>
+                <span className="text-slate-500">Learning style</span>
+                <span className="text-white capitalize">{user?.preferred_learning_style || 'General'}</span>
               </div>
             </div>
           </div>

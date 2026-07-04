@@ -1,6 +1,5 @@
 import React from 'react';
-import { Zap, BookOpen, Brain, Trophy, ArrowRight, Sun, Moon } from 'lucide-react';
-import { useApp } from '../context/AppContext';
+import { Zap, BookOpen, Brain, Trophy, ArrowRight } from 'lucide-react';
 
 interface LandingProps {
   onStart: (mode: 'login' | 'register') => void;
@@ -11,17 +10,14 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
 
   return (
     <div className="relative min-h-screen grid-bg overflow-hidden flex flex-col justify-between bg-background text-foreground transition-colors duration-300">
-      {/* Glow Circles */}
-      <div className="glow-circle bg-primary w-[500px] h-[500px] -top-40 -left-40"></div>
-      <div className="glow-circle bg-accent w-[400px] h-[400px] top-[40%] right-[-100px]"></div>
-      
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-10">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white">
-            <Zap className="h-6 w-6" />
+          <div className="h-10 w-10 rounded-xl bg-card border border-border flex items-center justify-center gap-[3px]">
+            <span className="h-5 w-[3px] rounded-full bg-primary"></span>
+            <span className="h-5 w-[3px] rounded-full bg-primary/40"></span>
           </div>
-          <span className="font-bold text-xl tracking-tight text-slate-800 dark:text-white">
+          <span className="font-display font-semibold text-xl text-white">
             AI Study Twin
           </span>
         </div>
@@ -41,16 +37,14 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
 
       {/* Hero Section */}
       <main className="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center text-center my-auto z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] sm:text-xs text-primary font-semibold mb-6 animate-pulse">
-          <SparklesIcon className="h-3.5 w-3.5" />
-          <span>Continuous Personalization Engine v1.0</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-[10px] sm:text-xs text-slate-400 font-medium mb-6">
+          <SparklesIcon className="h-3.5 w-3.5 text-primary" />
+          <span>Personalization engine v1.0</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-slate-800 dark:text-white mb-6 leading-tight max-w-4xl">
-          Meet Your Digital <br />
-          <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-            Learning Clone
-          </span>
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-semibold text-white mb-6 leading-tight max-w-4xl">
+          Meet your digital <br />
+          <span className="text-primary">learning clone</span>
         </h1>
 
         <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
@@ -60,7 +54,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
           <button 
             onClick={() => onStart('register')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-sm font-bold text-white transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 hover:scale-[1.02]"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary hover:bg-primary/90 text-sm font-bold text-background transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 hover:scale-[1.02]"
             style={{ minHeight: '48px' }}
           >
             <span>Create Study Twin</span>

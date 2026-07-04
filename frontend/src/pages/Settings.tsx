@@ -126,7 +126,7 @@ export const Settings: React.FC = () => {
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary to-accent text-xs font-bold text-white shadow-lg shadow-primary/10 cursor-pointer"
+              className="px-6 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background shadow-lg shadow-primary/10 cursor-pointer"
               style={{ minHeight: '44px' }}
             >
               {saving ? 'Syncing...' : 'Save Settings'}

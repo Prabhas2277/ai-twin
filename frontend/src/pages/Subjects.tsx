@@ -200,7 +200,7 @@ export const Subjects: React.FC = () => {
             </div>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary/95 text-xs font-bold text-white transition-all shadow-lg shadow-primary/25 self-start sm:self-auto cursor-pointer"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background transition-all shadow-lg shadow-primary/25 self-start sm:self-auto cursor-pointer"
               style={{ minHeight: '44px' }}
             >
               <Plus className="h-4.5 w-4.5" />
@@ -324,7 +324,7 @@ export const Subjects: React.FC = () => {
                         <button 
                           type="submit" 
                           disabled={uploading}
-                          className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-accent text-xs text-white font-bold hover:from-primary/95 flex items-center gap-1.5"
+                          className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-xs text-background font-bold flex items-center gap-1.5"
                           style={{ minHeight: '44px' }}
                         >
                           {uploading ? (
@@ -553,7 +553,7 @@ export const Subjects: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-xs text-white font-bold hover:from-primary/95 shadow-md shadow-primary/10"
+                  className="px-5 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs text-background font-bold shadow-md shadow-primary/10"
                   style={{ minHeight: '44px' }}
                 >
                   Create Space
