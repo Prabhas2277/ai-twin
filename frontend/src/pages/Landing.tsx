@@ -1,12 +1,20 @@
 import React from 'react';
 import { Zap, BookOpen, Brain, Trophy, ArrowRight } from 'lucide-react';
+import { CurvedLoop } from '../components/CurvedLoop';
 
 interface LandingProps {
   onStart: (mode: 'login' | 'register') => void;
 }
 
 export const Landing: React.FC<LandingProps> = ({ onStart }) => {
-
+  const marqueeItems = [
+    "Continuous Personalization Engine v1.0",
+    "Active Socratic Tutor Online",
+    "ChromaDB Vector Indexing Secure",
+    "Gemini Reasoning Engine Ready",
+    "Custom Quiz Architect Configured",
+    "Gamified XP Streaks Active",
+  ];
 
   return (
     <div className="relative min-h-screen grid-bg overflow-hidden flex flex-col justify-between bg-background text-foreground transition-colors duration-300">
@@ -23,11 +31,9 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
         </div>
         
         <div className="flex items-center gap-3">
-
-          
           <button 
             onClick={() => onStart('login')}
-            className="px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-800 border border-border/80 hover:bg-slate-850 dark:hover:bg-slate-750 text-xs sm:text-sm font-semibold text-white transition-all shadow-md shadow-slate-950/20"
+            className="px-5 py-2.5 rounded-xl bg-slate-900 border border-border text-xs sm:text-sm font-semibold text-white transition-all shadow-md hover:bg-slate-800"
             style={{ minHeight: '44px' }}
           >
             Sign In
@@ -37,7 +43,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
 
       {/* Hero Section */}
       <main className="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center text-center my-auto z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-[10px] sm:text-xs text-slate-400 font-medium mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-[10px] sm:text-xs text-slate-450 font-medium mb-6">
           <SparklesIcon className="h-3.5 w-3.5 text-primary" />
           <span>Personalization engine v1.0</span>
         </div>
@@ -47,11 +53,11 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
           <span className="text-primary">learning clone</span>
         </h1>
 
-        <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
+        <p className="text-slate-500 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
           AI Study Twin digests your textbooks, notes, and lecture slides. It builds an active model of your learning style, answers questions the way you understand best, and helps you master complex subjects.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto mb-16">
           <button 
             onClick={() => onStart('register')}
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary hover:bg-primary/90 text-sm font-bold text-background transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 hover:scale-[1.02]"
@@ -62,15 +68,20 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
           </button>
           <button 
             onClick={() => onStart('login')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-border hover:bg-slate-200 dark:hover:bg-slate-800 text-sm font-semibold text-slate-800 dark:text-white transition"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 border border-border hover:bg-slate-800 text-sm font-semibold text-white transition"
             style={{ minHeight: '48px' }}
           >
             Explore Dashboard
           </button>
         </div>
 
+        {/* Curved loop signature stats */}
+        <div className="w-full max-w-4xl mb-16">
+          <CurvedLoop items={marqueeItems} speed={25} />
+        </div>
+
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-16 md:mt-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-8">
           <div className="p-6 rounded-2xl glass-panel text-left">
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 border border-primary/10">
               <Brain className="h-5 w-5" />
