@@ -298,7 +298,7 @@ export const Chat: React.FC = () => {
             <div className="space-y-2">
               <label className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Tutoring Mode</label>
               <div className="grid grid-cols-2 gap-2">
-                {[
+                 {[
                   { id: 'beginner', name: 'Beginner' },
                   { id: 'exam', name: 'Exam prep' },
                   { id: 'expert', name: 'Expert' },
@@ -307,10 +307,10 @@ export const Chat: React.FC = () => {
                   <button
                     key={mode.id}
                     onClick={() => setSelectedMode(mode.id as any)}
-                    className={`py-2 px-3 rounded-lg text-xs font-semibold border transition cursor-pointer ${
+                    className={`py-2 px-3 rounded-lg text-xs font-bold border transition cursor-pointer ${
                       selectedMode === mode.id 
-                        ? 'bg-primary/20 border-primary text-primary dark:text-white font-bold' 
-                        : 'bg-slate-100 dark:bg-slate-950/20 border-border text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
+                        ? 'bg-primary border-primary text-white shadow-md shadow-primary/15' 
+                        : 'bg-slate-900 border-slate-750 text-slate-400 hover:text-white'
                     }`}
                     style={{ minHeight: '40px' }}
                   >
@@ -328,13 +328,13 @@ export const Chat: React.FC = () => {
               <select 
                 value={notesType} 
                 onChange={(e) => setNotesType(e.target.value as any)}
-                className="flex-1 px-2.5 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-350 outline-none"
+                className="flex-1 px-2.5 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                 style={{ minHeight: '40px' }}
               >
-                <option value="revision">Summary Notes</option>
-                <option value="mindmap">Mermaid Mind Map</option>
-                <option value="flashcards">Flashcard Deck</option>
-                <option value="formula">Formula Sheet</option>
+                <option value="revision" className="bg-slate-950">Summary Notes</option>
+                <option value="mindmap" className="bg-slate-950">Mermaid Mind Map</option>
+                <option value="flashcards" className="bg-slate-950">Flashcard Deck</option>
+                <option value="formula" className="bg-slate-950">Formula Sheet</option>
               </select>
             </div>
             <button 
@@ -343,7 +343,7 @@ export const Chat: React.FC = () => {
                 setShowMobileFilters(false);
               }}
               disabled={generatingNotes}
-              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white flex items-center justify-center gap-1.5 cursor-pointer shadow-md shadow-primary/10 transition-all"
               style={{ minHeight: '44px' }}
             >
               {generatingNotes ? (
@@ -484,7 +484,7 @@ export const Chat: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="absolute right-2 top-2 p-2.5 rounded-lg bg-primary hover:bg-primary/90 text-background hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none transition cursor-pointer"
+                className="absolute right-2 top-2 p-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none transition cursor-pointer flex items-center justify-center"
                 style={{ minWidth: '44px', minHeight: '44px' }}
                 aria-label="Send message"
               >

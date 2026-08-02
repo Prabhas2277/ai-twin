@@ -67,6 +67,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
   const currentXpInLevel = user.xp % nextLevelXp;
   const progressPercent = Math.min(100, (currentXpInLevel / nextLevelXp) * 100);
 
+  const getInitials = () => {
+    if (user.full_name) {
+      const parts = user.full_name.trim().split(/\s+/);
+      if (parts.length > 1) {
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+      }
+      return parts[0][0].toUpperCase();
+    }
+    if (user.email) {
+      return user.email[0].toUpperCase();
+    }
+    return 'U';
+  };
+
   const handleMenuClick = (pageId: string) => {
     setActivePage(pageId);
     setMobileSidebarOpen(false); // Close mobile drawer when selection changes
@@ -84,10 +98,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
       <div>
         <div className="p-4 flex items-center justify-between relative">
           <div className="flex items-center gap-3">
-            {/* Twin mark: two parallel strokes standing for "you + your twin" */}
-            <div className="h-10 w-10 shrink-0 rounded-xl bg-card border border-border flex items-center justify-center gap-[3px]">
-              <span className="h-5 w-[3px] rounded-full bg-primary"></span>
-              <span className="h-5 w-[3px] rounded-full bg-primary/40"></span>
+            {/* User Avatar Fallback / Initials Monogram */}
+            <div className="h-10 w-10 shrink-0 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-sm font-gamified shadow-sm shadow-primary/5">
+              {getInitials()}
             </div>
 
             {(!isSidebarCollapsed || isMobileSidebarOpen) && (
@@ -130,8 +143,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) =
           <div className="px-4 mb-4 transition-all duration-300">
             <div className="p-3.5 rounded-xl bg-card border border-border">
               <div className="flex items-baseline justify-between mb-2">
-                <span className="font-mono-data text-lg font-semibold text-white">Lvl {user.level}</span>
-                <span className="text-[11px] text-slate-500">{user.streak_days}d streak</span>
+                <span className="font-gamified text-lg font-semibold text-white">Lvl {user.level}</span>
+                <span className="text-[11px] text-slate-500 font-mono-data">{user.streak_days}d streak</span>
               </div>
 
               <div className="w-full bg-slate-800 rounded-full h-1 mb-1.5 overflow-hidden">

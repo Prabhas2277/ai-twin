@@ -100,7 +100,7 @@ const NotificationBell: React.FC = () => {
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 h-4.5 w-4.5 rounded-full bg-primary text-[10px] font-bold text-background flex items-center justify-center">
+          <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-red-500 text-[9px] font-bold text-white flex items-center justify-center z-15 shadow-sm">
             {unreadCount}
           </span>
         )}

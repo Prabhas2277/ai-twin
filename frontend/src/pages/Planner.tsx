@@ -240,12 +240,12 @@ export const Planner: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-4.5 w-4.5 text-primary" />
-                <h3 className="font-bold text-slate-800 dark:text-white text-sm font-sans">AI Weekly Scheduler</h3>
+                <h3 className="font-display font-semibold text-white text-base">AI Weekly Scheduler</h3>
               </div>
               {showMobileConfig && (
                 <button 
                   onClick={() => setShowMobileConfig(false)}
-                  className="p-1 rounded bg-slate-100 dark:bg-slate-900 border text-slate-500 hover:text-slate-800 dark:hover:text-white"
+                  className="p-1 rounded bg-slate-900 border border-slate-750 text-slate-500 hover:text-white"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -257,12 +257,12 @@ export const Planner: React.FC = () => {
                 <label className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-1">Select Subjects</label>
                 <div className="space-y-2 max-h-28 overflow-y-auto pr-1">
                   {subjects.map(s => (
-                    <label key={s.id} className="flex items-center gap-2.5 text-xs text-slate-600 dark:text-slate-350 hover:text-slate-900 dark:hover:text-white cursor-pointer select-none py-1 min-h-[36px]">
+                    <label key={s.id} className="flex items-center gap-2.5 text-xs text-slate-400 hover:text-white cursor-pointer select-none py-1 min-h-[36px]">
                       <input 
                         type="checkbox" 
                         checked={selectedSubNames.includes(s.name)}
                         onChange={() => handleToggleSubCheckbox(s.name)}
-                        className="h-5 w-5 rounded bg-slate-250 dark:bg-slate-900 border-border text-primary cursor-pointer"
+                        className="h-5 w-5 rounded bg-slate-900 border border-slate-700 text-primary cursor-pointer focus:ring-1 focus:ring-primary"
                       />
                       <span className="truncate">{s.name}</span>
                     </label>
@@ -279,10 +279,10 @@ export const Planner: React.FC = () => {
                   step={0.5}
                   value={availableHours}
                   onChange={(e) => setAvailableHours(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary"
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary border border-slate-700"
                   style={{ minHeight: '44px' }} // Touch guidelines
                 />
-                <span className="text-xs text-slate-700 dark:text-slate-300 mt-1 block font-bold">{availableHours} hours / day</span>
+                <span className="text-xs text-slate-300 mt-1 block font-bold font-mono-data">{availableHours} hours / day</span>
               </div>
 
               <div>
@@ -291,7 +291,7 @@ export const Planner: React.FC = () => {
                   type="date" 
                   value={examDate}
                   onChange={(e) => setExamDate(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-750 dark:text-slate-300 outline-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                   style={{ minHeight: '40px' }}
                 />
               </div>
@@ -299,7 +299,7 @@ export const Planner: React.FC = () => {
               <button
                 type="submit"
                 disabled={generating}
-                className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
+                className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white flex items-center justify-center gap-1.5 shadow-md shadow-primary/10 transition-all cursor-pointer"
                 style={{ minHeight: '44px' }}
               >
                 {generating ? (
@@ -321,10 +321,10 @@ export const Planner: React.FC = () => {
           <div className="pt-5 border-t border-border/60">
             <div className="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
               <div className="flex items-center gap-2">
-                <Clock className="h-4.5 w-4.5 text-secondary" />
-                <h3 className="font-bold text-slate-800 dark:text-white text-sm font-sans">Log Study Hours</h3>
+                <Clock className="h-4.5 w-4.5 text-primary" />
+                <h3 className="font-display font-semibold text-white text-base">Log Study Hours</h3>
               </div>
-              <span className="text-[10px] text-slate-500 font-medium">Logged: {studyLogs.length}</span>
+              <span className="text-[10px] text-slate-500 font-mono-data">Logged: {studyLogs.length}</span>
             </div>
             
             <form onSubmit={handleLogStudyTime} className="space-y-4 text-left">
@@ -333,12 +333,12 @@ export const Planner: React.FC = () => {
                   value={logSubId || ''}
                   required
                   onChange={(e) => setLogSubId(Number(e.target.value))}
-                  className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-350 outline-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                   style={{ minHeight: '40px' }}
                 >
-                  <option value="" disabled className="bg-white dark:bg-slate-950">Choose Subject</option>
+                  <option value="" disabled className="bg-slate-950">Choose Subject</option>
                   {subjects.map(s => (
-                    <option key={s.id} value={s.id} className="bg-white dark:bg-slate-950 text-slate-800 dark:text-white">{s.name}</option>
+                    <option key={s.id} value={s.id} className="bg-slate-950 text-white">{s.name}</option>
                   ))}
                 </select>
               </div>
@@ -348,22 +348,22 @@ export const Planner: React.FC = () => {
                 <select
                   value={logMinutes}
                   onChange={(e) => setLogMinutes(Number(e.target.value))}
-                  className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-350 outline-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                   style={{ minHeight: '40px' }}
                 >
-                  <option value={15}>15 Minutes (+5 XP)</option>
-                  <option value={30}>30 Minutes (+15 XP)</option>
-                  <option value={45}>45 Minutes (+20 XP)</option>
-                  <option value={60}>60 Minutes (+30 XP)</option>
-                  <option value={90}>90 Minutes (+45 XP)</option>
-                  <option value={120}>120 Minutes (+60 XP)</option>
+                  <option value={15} className="bg-slate-950">15 Minutes (+5 XP)</option>
+                  <option value={30} className="bg-slate-950">30 Minutes (+15 XP)</option>
+                  <option value={45} className="bg-slate-950">45 Minutes (+20 XP)</option>
+                  <option value={60} className="bg-slate-950">60 Minutes (+30 XP)</option>
+                  <option value={90} className="bg-slate-950">90 Minutes (+45 XP)</option>
+                  <option value={120} className="bg-slate-950">120 Minutes (+60 XP)</option>
                 </select>
               </div>
 
               <button
                 type="submit"
                 disabled={logging}
-                className="w-full py-3 rounded-xl bg-slate-200 dark:bg-slate-900 border hover:bg-slate-250 dark:hover:bg-slate-800 text-xs font-bold text-secondary transition cursor-pointer"
+                className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white transition cursor-pointer shadow-md shadow-primary/10"
                 style={{ minHeight: '44px' }}
               >
                 Log Session

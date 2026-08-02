@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, FileText, CheckSquare, Clock, 
-  Brain, AlertCircle, Calendar, Sparkles 
+  Brain, AlertCircle, Calendar, Sparkles, Check
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
@@ -45,6 +45,7 @@ export const Dashboard: React.FC = () => {
       }
     } catch (e) {
       console.error('Failed to load dashboard:', e);
+      setData(null);
     } finally {
       setLoading(false);
     }
@@ -70,12 +71,81 @@ export const Dashboard: React.FC = () => {
     { title: 'Quizzes Taken', value: data.quizzes_completed, icon: CheckSquare, color: 'text-primary border-primary/20 bg-primary/5' },
     { title: 'Hours Studied', value: `${data.study_hours}h`, icon: Clock, color: 'text-primary border-primary/20 bg-primary/5' },
     { title: 'Knowledge Level', value: `${data.knowledge_score}%`, icon: Brain, color: 'text-primary border-primary/20 bg-primary/5' },
-    { title: 'Weak Topics', value: data.weak_topics_count, icon: AlertCircle, color: 'text-red-500 border-red-500/20 bg-red-500/5' },
+    { title: 'Weak Topics', value: data.weak_topics_count, icon: AlertCircle, color: 'text-primary border-primary/20 bg-primary/5' },
   ];
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 w-full">
       <Header title="My Study Twin Dashboard" />
+
+      {/* Onboarding Checklist */}
+      {(data.total_subjects === 0 || data.documents_uploaded === 0 || data.quizzes_completed === 0) && (
+        <div className="glass-panel p-6 rounded-2xl mb-8 border-primary/30">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <h3 className="font-display font-semibold text-white text-base">Get Started: Configure Your Study Twin</h3>
+          </div>
+          <p className="text-slate-400 text-xs mb-6 max-w-xl leading-relaxed">
+            Follow these 3 simple setup steps to calibrate your AI tutor clone and begin personalized learning.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Step 1 */}
+            <div className={`p-4 rounded-xl border transition ${
+              data.total_subjects > 0 ? 'bg-primary/5 border-primary/20 text-slate-400' : 'bg-slate-900/40 border-border text-white'
+            }`}>
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Step 1</span>
+                {data.total_subjects > 0 ? (
+                  <span className="h-5 w-5 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <Check className="h-3 w-3" />
+                  </span>
+                ) : (
+                  <span className="h-5 w-5 rounded-full border border-border flex items-center justify-center text-[10px] text-slate-500 font-mono-data">1</span>
+                )}
+              </div>
+              <h4 className="text-xs font-bold mb-1">Create a Subject Space</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-3">Create your first subject category to organize files.</p>
+            </div>
+
+            {/* Step 2 */}
+            <div className={`p-4 rounded-xl border transition ${
+              data.documents_uploaded > 0 ? 'bg-primary/5 border-primary/20 text-slate-400' : 'bg-slate-900/40 border-border text-white'
+            }`}>
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Step 2</span>
+                {data.documents_uploaded > 0 ? (
+                  <span className="h-5 w-5 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <Check className="h-3 w-3" />
+                  </span>
+                ) : (
+                  <span className="h-5 w-5 rounded-full border border-border flex items-center justify-center text-[10px] text-slate-500 font-mono-data">2</span>
+                )}
+              </div>
+              <h4 className="text-xs font-bold mb-1">Sync Study Documents</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-3">Upload lecture slides, notes, or textbooks.</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className={`p-4 rounded-xl border transition ${
+              data.quizzes_completed > 0 ? 'bg-primary/5 border-primary/20 text-slate-400' : 'bg-slate-900/40 border-border text-white'
+            }`}>
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Step 3</span>
+                {data.quizzes_completed > 0 ? (
+                  <span className="h-5 w-5 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <Check className="h-3 w-3" />
+                  </span>
+                ) : (
+                  <span className="h-5 w-5 rounded-full border border-border flex items-center justify-center text-[10px] text-slate-500 font-mono-data">3</span>
+                )}
+              </div>
+              <h4 className="text-xs font-bold mb-1">Take Practice Quizzes</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-3">Complete an evaluation to train memory levels.</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <PixelTransition gridSize={10}>
         {/* Cards Grid */}
@@ -166,18 +236,14 @@ export const Dashboard: React.FC = () => {
           {/* Recent Activity */}
           <div className="glass-panel p-6 rounded-2xl">
             <div className="flex items-center gap-2 mb-4">
-              <Calendar className="h-5 w-5 text-secondary" />
-              <h3 className="font-bold text-slate-800 dark:text-white text-base">Recent Brain Syncs</h3>
+              <Calendar className="h-5 w-5 text-primary" />
+              <h3 className="font-display font-semibold text-white text-base">Recent Brain Syncs</h3>
             </div>
 
             <div className="space-y-4 max-h-[300px] overflow-y-auto pr-1">
               {data.recent_activity.map((act, idx) => (
                 <div key={idx} className="flex items-start gap-3 pb-3 border-b border-border/50 last:border-0">
-                  <div className={`p-2 rounded-lg shrink-0 ${
-                    act.type === 'upload' ? 'bg-secondary/10 text-secondary' :
-                    act.type === 'quiz' ? 'bg-emerald-500/10 text-emerald-500' :
-                    'bg-primary/10 text-primary'
-                  }`}>
+                  <div className="p-2 rounded-lg shrink-0 bg-slate-950/60 text-slate-300 border border-border">
                     {act.type === 'upload' ? <FileText className="h-3.5 w-3.5" /> :
                      act.type === 'quiz' ? <CheckSquare className="h-3.5 w-3.5" /> :
                      <Clock className="h-3.5 w-3.5" />}

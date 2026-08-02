@@ -101,16 +101,16 @@ export const Analytics: React.FC = () => {
         <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Calendar className="h-4.5 w-4.5 text-secondary" />
-              <h3 className="font-bold text-slate-800 dark:text-white text-base">Study Consistency (Last 7 Days)</h3>
+              <Calendar className="h-4.5 w-4.5 text-primary" />
+              <h3 className="font-display font-semibold text-white text-base">Study Consistency (Last 7 Days)</h3>
             </div>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={data.study_consistency}>
                   <defs>
                     <linearGradient id="colorMinutes" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#14b8a6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
@@ -122,7 +122,7 @@ export const Analytics: React.FC = () => {
                     name="Minutes Studied" 
                     unit="m"
                     dataKey="minutes" 
-                    stroke="#14b8a6" 
+                    stroke="#3b82f6" 
                     strokeWidth={2}
                     fillOpacity={1} 
                     fill="url(#colorMinutes)" 
@@ -138,7 +138,7 @@ export const Analytics: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="h-4.5 w-4.5 text-primary" />
-              <h3 className="font-bold text-slate-800 dark:text-white text-base">Cognitive Growth Index (Quiz History)</h3>
+              <h3 className="font-display font-semibold text-white text-base">Cognitive Growth Index (Quiz History)</h3>
             </div>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -152,9 +152,9 @@ export const Analytics: React.FC = () => {
                     name="Quiz Score"
                     unit="%"
                     dataKey="score" 
-                    stroke="#8b5cf6" 
+                    stroke="#3b82f6" 
                     strokeWidth={2.5}
-                    dot={{ fill: '#ec4899', r: 4, strokeWidth: 1.5 }}
+                    dot={{ fill: '#3b82f6', r: 4, strokeWidth: 1.5 }}
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>
@@ -170,8 +170,8 @@ export const Analytics: React.FC = () => {
         {/* Subject wise average scores */}
         <div className="lg:col-span-2 glass-panel p-6 rounded-2xl">
           <div className="flex items-center gap-2 mb-4">
-            <BarChart2 className="h-4.5 w-4.5 text-accent" />
-            <h3 className="font-bold text-slate-800 dark:text-white text-base">Subject Comparison Metrics</h3>
+            <BarChart2 className="h-4.5 w-4.5 text-primary" />
+            <h3 className="font-display font-semibold text-white text-base">Subject Comparison Metrics</h3>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -184,7 +184,7 @@ export const Analytics: React.FC = () => {
                   dataKey="average_score" 
                   name="Average Score" 
                   unit="%"
-                  fill="#6366f1" 
+                  fill="#3b82f6" 
                   radius={[8, 8, 0, 0]}
                   maxBarSize={45} 
                 />
@@ -195,7 +195,7 @@ export const Analytics: React.FC = () => {
 
         {/* Detailed Performance List */}
         <div className="glass-panel p-6 rounded-2xl">
-          <h3 className="font-bold text-slate-800 dark:text-white text-base mb-4">Classroom Breakdown</h3>
+          <h3 className="font-display font-semibold text-white text-base mb-4">Classroom Breakdown</h3>
           <div className="space-y-4 max-h-[260px] overflow-y-auto pr-1">
             {data.subject_performance.map((sub, idx) => (
               <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-border/80 text-xs shadow-sm">

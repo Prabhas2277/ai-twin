@@ -244,12 +244,12 @@ export const Quiz: React.FC = () => {
                     value={selectedSubId || ''} 
                     required
                     onChange={(e) => setSelectedSubId(Number(e.target.value))}
-                    className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-350 outline-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                     style={{ minHeight: '40px' }}
                   >
-                    <option value="" disabled className="bg-white dark:bg-slate-950">Choose Subject</option>
+                    <option value="" disabled className="bg-slate-950">Choose Subject</option>
                     {subjects.map(s => (
-                      <option key={s.id} value={s.id} className="bg-white dark:bg-slate-950 text-slate-805 dark:text-white">{s.name}</option>
+                      <option key={s.id} value={s.id} className="bg-slate-950 text-white">{s.name}</option>
                     ))}
                   </select>
                 </div>
@@ -259,13 +259,13 @@ export const Quiz: React.FC = () => {
                   <select 
                     value={difficulty} 
                     onChange={(e) => setDifficulty(e.target.value as any)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-350 outline-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                     style={{ minHeight: '40px' }}
                   >
-                    <option value="easy">Easy (Concept check)</option>
-                    <option value="medium">Medium (Standard)</option>
-                    <option value="hard">Hard (Rigorous)</option>
-                    <option value="exam">Exam level (University standard)</option>
+                    <option value="easy" className="bg-slate-950">Easy (Concept check)</option>
+                    <option value="medium" className="bg-slate-950">Medium (Standard)</option>
+                    <option value="hard" className="bg-slate-950">Hard (Rigorous)</option>
+                    <option value="exam" className="bg-slate-950">Exam level (University standard)</option>
                   </select>
                 </div>
 
@@ -277,7 +277,7 @@ export const Quiz: React.FC = () => {
                     max={15}
                     value={questionCount}
                     onChange={(e) => setQuestionCount(Number(e.target.value))}
-                    className="w-full px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-950/40 border border-border text-xs text-slate-700 dark:text-slate-355 outline-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-slate-750 text-xs text-white outline-none focus:border-primary transition"
                     style={{ minHeight: '40px' }}
                   />
                 </div>
@@ -285,7 +285,7 @@ export const Quiz: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={generating}
-                  className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+                  className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white flex items-center justify-center gap-1.5 cursor-pointer shadow-md shadow-primary/10 transition-all"
                   style={{ minHeight: '44px' }}
                 >
                   {generating ? (
@@ -310,11 +310,13 @@ export const Quiz: React.FC = () => {
 
           {/* List views: Quiz history and Leaderboard */}
           <div className="lg:col-span-3 glass-panel rounded-2xl flex flex-col overflow-hidden h-full border-border/80">
-            <div className="flex border-b border-border/80 bg-slate-50 dark:bg-slate-950/20">
+            <div className="flex border-b border-border/80 bg-slate-950/20">
               <button 
                 onClick={() => { setActiveTab('generator'); }}
                 className={`px-6 py-4 text-xs font-bold transition cursor-pointer ${
-                  activeTab === 'generator' ? 'text-primary border-b-2 border-primary bg-slate-100/50 dark:bg-slate-900/30' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
+                  activeTab === 'generator' 
+                    ? 'text-white border-b-2 border-primary bg-primary/10' 
+                    : 'text-slate-400 hover:text-white bg-transparent'
                 }`}
                 style={{ minHeight: '48px' }}
               >
@@ -323,7 +325,9 @@ export const Quiz: React.FC = () => {
               <button 
                 onClick={() => { setActiveTab('leaderboard'); }}
                 className={`px-6 py-4 text-xs font-bold transition cursor-pointer ${
-                  activeTab === 'leaderboard' ? 'text-primary border-b-2 border-primary bg-slate-100/50 dark:bg-slate-900/30' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
+                  activeTab === 'leaderboard' 
+                    ? 'text-white border-b-2 border-primary bg-primary/10' 
+                    : 'text-slate-400 hover:text-white bg-transparent'
                 }`}
                 style={{ minHeight: '48px' }}
               >
@@ -563,7 +567,7 @@ export const Quiz: React.FC = () => {
                 <button
                   onClick={handleSubmitQuiz}
                   disabled={submittingQuiz}
-                  className="px-6 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background shadow-lg shadow-primary/10 disabled:opacity-50 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white shadow-lg shadow-primary/10 disabled:opacity-50 cursor-pointer"
                   style={{ minHeight: '44px' }}
                 >
                   {submittingQuiz ? 'Evaluating Answers...' : 'Submit Answers'}

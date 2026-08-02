@@ -215,7 +215,7 @@ export const Subjects: React.FC = () => {
             </div>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-background transition-all shadow-lg shadow-primary/25 self-start sm:self-auto cursor-pointer"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white transition-all shadow-lg shadow-primary/25 self-start sm:self-auto cursor-pointer"
               style={{ minHeight: '44px' }}
             >
               <Plus className="h-4.5 w-4.5" />
@@ -360,16 +360,16 @@ export const Subjects: React.FC = () => {
           )}
 
           {subjects.length === 0 && (
-            <div className="py-16 text-center glass-panel rounded-2xl flex flex-col items-center border-dashed">
-              <Folder className="h-12 w-12 text-slate-500 mb-3" />
-              <h4 className="font-bold text-slate-350">No subjects created yet</h4>
-              <p className="text-slate-500 text-xs mt-1 mb-5 max-w-sm leading-relaxed">Subjects organize your study material. Create your first subject to get started.</p>
+            <div className="py-12 text-center glass-panel rounded-2xl flex flex-col items-center border-dashed border-slate-700">
+              <Folder className="h-10 w-10 text-slate-500 mb-3" />
+              <h4 className="font-display font-semibold text-white text-base">Get started with a subject</h4>
+              <p className="text-slate-450 text-xs mt-1 mb-5 max-w-xs leading-relaxed">Create a subject space to organize your study guides and notes.</p>
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="px-5 py-3 rounded-xl bg-slate-900 border border-border hover:bg-slate-800 text-xs font-bold text-white transition cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs font-bold text-white shadow-md shadow-primary/10 transition cursor-pointer"
                 style={{ minHeight: '44px' }}
               >
-                Create First Subject
+                Create Subject
               </button>
             </div>
           )}
@@ -441,12 +441,12 @@ export const Subjects: React.FC = () => {
                         <button 
                           type="submit" 
                           disabled={uploading}
-                          className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-xs text-background font-bold flex items-center gap-1.5"
+                          className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-xs text-white font-bold flex items-center gap-1.5 cursor-pointer shadow-md shadow-primary/10 transition-all"
                           style={{ minHeight: '44px' }}
                         >
                           {uploading ? (
                             <>
-                              <div className="h-3 w-3 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
+                              <div className="h-3 w-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                               <span>Uploading...</span>
                             </>
                           ) : (
@@ -670,7 +670,7 @@ export const Subjects: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs text-background font-bold shadow-md shadow-primary/10"
+                  className="px-5 py-3 rounded-xl bg-primary hover:bg-primary/90 text-xs text-white font-bold shadow-md shadow-primary/10 cursor-pointer"
                   style={{ minHeight: '44px' }}
                 >
                   Create Space
