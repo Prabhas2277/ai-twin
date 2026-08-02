@@ -49,7 +49,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
 
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'; // matches FastAPI port
+  const apiUrl = import.meta.env.VITE_API_URL || 
+    (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://127.0.0.1:8000/api'
+      : 'https://ai-twin-tmll.onrender.com/api');
 
   useEffect(() => {
     // Restore session
